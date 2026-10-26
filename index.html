@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Slipchute — tilt the tray, sort every parcel</title>
+<meta name="description" content="Slipchute is a calm sorting puzzle for iPhone. One swipe tilts the whole tray; every parcel slides until something stops it and must drop into the chute with its own stamp. No timer, no lives, no ads.">
+<link rel="canonical" href="https://nguyenvanlamm.github.io/slipchute-site/">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F7EFE0; --ivory: #FCFAF3; --ink: #162849; --ink2: #3E4D69; --red: #B82F28;
+    --line: rgba(22, 40, 73, .18);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; color: var(--ink); background-color: var(--paper);
+    background-image: linear-gradient(rgba(22,40,73,.045) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(22,40,73,.045) 1px, transparent 1px);
+    background-size: 48px 48px;
+    font: 17px/1.55 "Archivo", system-ui, -apple-system, sans-serif;
+  }
+  a { color: var(--ink); }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+  header.top { display: flex; align-items: center; justify-content: space-between; padding: 20px 0; }
+  .mark { width: 44px; height: 44px; display: block; }
+  nav a { margin-left: 18px; font-weight: 600; text-underline-offset: 5px; }
+  .hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; padding: 24px 0 56px; }
+  h1 { font-size: clamp(44px, 7vw, 84px); line-height: .95; letter-spacing: -.03em; font-weight: 800; margin: 0 0 20px; }
+  h1 span { display: block; transform: translateX(12%); }
+  .lede { font-size: 20px; color: var(--ink2); max-width: 34em; margin: 0 0 28px; }
+  .badge { display: inline-flex; align-items: center; gap: 12px; background: var(--red); color: var(--ivory);
+           padding: 16px 22px; font-weight: 700; font-size: 18px; text-decoration: none; min-height: 48px; }
+  .badge small { display: block; font-weight: 500; font-size: 14px; opacity: .9; }
+  .phone { width: 100%; max-width: 360px; justify-self: center; border-radius: 40px; overflow: hidden;
+           box-shadow: 0 0 0 1px rgba(22,40,73,.16), 0 30px 60px -28px rgba(22,40,73,.45); background: var(--paper); }
+  .phone img { display: block; width: 100%; height: auto; }
+  section { padding: 48px 0; border-top: 1px solid var(--line); }
+  .cap { font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--ink2); margin: 0 0 8px; }
+  h2 { font-size: clamp(28px, 4vw, 40px); line-height: 1.1; margin: 0 0 24px; font-weight: 800; letter-spacing: -.02em; }
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; list-style: none; padding: 0; margin: 0; }
+  .steps li { background: var(--ivory); border: 1.5px solid var(--ink); padding: 20px; }
+  .num { font-stretch: 68%; font-weight: 800; font-size: 44px; line-height: 1; color: var(--red); }
+  .steps h3 { margin: 8px 0 6px; font-size: 20px; }
+  .steps p, .not p, .chap p, details p { margin: 0; color: var(--ink2); }
+  .not { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .not div { border-top: 4px solid var(--red); padding-top: 12px; }
+  .not strong { display: block; font-size: 19px; }
+  .shots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .shots figure { margin: 0; }
+  .shots img { width: 100%; height: auto; display: block; border-radius: 28px; box-shadow: 0 0 0 1px rgba(22,40,73,.16); }
+  .shots figcaption { font-size: 14px; color: var(--ink2); margin-top: 8px; }
+  .chap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .chap div { padding: 20px; background: var(--ivory); box-shadow: inset 0 0 0 1.5px var(--ink); }
+  .chap .cur { background: var(--red); color: var(--ivory); box-shadow: none; }
+  .chap .cur p { color: var(--ivory); }
+  .chap h3 { margin: 0 0 6px; font-size: 21px; }
+  details { border-top: 1px solid var(--line); padding: 14px 0; }
+  details:last-of-type { border-bottom: 1px solid var(--line); }
+  summary { cursor: pointer; font-weight: 700; font-size: 18px; min-height: 32px; }
+  footer { padding: 32px 0 48px; color: var(--ink2); font-size: 15px; border-top: 1px solid var(--line); }
+  footer a { margin-right: 18px; }
+  @media (max-width: 760px) {
+    .hero, .steps, .not, .shots, .chap { grid-template-columns: 1fr; }
+    .not { grid-template-columns: 1fr 1fr; }
+    h1 span { transform: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a href="./" aria-label="Slipchute home"><img class="mark" src="assets/favicon.svg" alt="Slipchute"></a>
+    <nav><a href="#how">How it plays</a><a href="#faq">FAQ</a><a href="support.html">Support</a></nav>
+  </header>
+
+  <main>
+    <section class="hero" style="border-top:0">
+      <div>
+        <h1>Tilt the tray.<span>Every parcel moves.</span></h1>
+        <p class="lede">Slipchute is a calm sorting puzzle for iPhone. One swipe tilts the whole tray, every parcel slides
+          until something stops it, and each one has to drop into the chute with its own stamp.</p>
+        <a class="badge" href="#chapters" aria-label="Coming soon on the App Store">
+          <span>Coming soon on the App Store<small>iPhone · 30 routes free</small></span>
+        </a>
+      </div>
+      <div class="phone"><img src="assets/game.webp" width="780" height="1688" alt="A sorting tray mid-route: coloured parcels tied with twine, chutes cut into the rim, a strip of postage stamps counting the tilts left."></div>
+    </section>
+
+    <section id="how">
+      <p class="cap">How it plays</p>
+      <h2>One swipe. Everything slides.</h2>
+      <ol class="steps">
+        <li><span class="num">1</span><h3>Tilt the tray</h3><p>Swipe, or tap the arrows. Every parcel on the tray slides that way at once.</p></li>
+        <li><span class="num">2</span><h3>Use the stoppers</h3><p>Walls, paperweights and other parcels stop a slide. Line each parcel up with its chute.</p></li>
+        <li><span class="num">3</span><h3>Watch the stamps</h3><p>Each tilt cancels a postage stamp. Deliver every parcel before the strip runs out.</p></li>
+      </ol>
+    </section>
+
+    <section>
+      <p class="cap">What it is not</p>
+      <h2>No clock. No queue. No ads.</h2>
+      <div class="not">
+        <div><strong>No timer</strong><p>Think as long as you like. The limit is tilts, not seconds.</p></div>
+        <div><strong>No lives</strong><p>Retry any route straight away, as often as you want.</p></div>
+        <div><strong>No ads</strong><p>Nothing interrupts a route, and nothing tracks you.</p></div>
+        <div><strong>Offline</strong><p>Plays anywhere. Your progress stays on your iPhone.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <p class="cap">Inside</p>
+      <h2>Three screens, all paper and ink.</h2>
+      <div class="shots">
+        <figure><img src="assets/home.webp" width="780" height="1688" loading="lazy" alt="Home: the Slipchute wordmark, three chapters with their stamp sheets, tools and the Sort button."><figcaption>Pick up where you left off.</figcaption></figure>
+        <figure><img src="assets/game.webp" width="780" height="1688" loading="lazy" alt="A route in progress with the tilt pad and rubber-stamp tools."><figcaption>Tilt pad on the left, tools on the right.</figcaption></figure>
+        <figure><img src="assets/shop.webp" width="780" height="1688" loading="lazy" alt="The counter: All Routes and two tool packs, with Restore Purchases."><figcaption>One unlock, two optional tool packs.</figcaption></figure>
+      </div>
+    </section>
+
+    <section id="chapters">
+      <p class="cap">Chapters</p>
+      <h2>90 routes, three rooms.</h2>
+      <div class="chap">
+        <div class="cur"><h3>Front Counter</h3><p>30 routes, free. Learn to tilt, stop and line up.</p></div>
+        <div><h3>Back Room</h3><p>30 routes with paperweights: they slide with you but never leave.</p></div>
+        <div><h3>Night Shift</h3><p>30 routes with tape that halts a parcel mid-slide.</p></div>
+      </div>
+      <p style="margin-top:16px;color:var(--ink2)">Back Room and Night Shift open with one purchase, All Routes. Undo, +3 Tilts and Lift
+        come with every game, and the first clear of routes 10, 20 and 30 in each chapter adds one more.</p>
+    </section>
+
+    <section id="faq">
+      <p class="cap">FAQ</p>
+      <h2>Questions at the counter</h2>
+      <details><summary>Is Slipchute free?</summary><p>The first chapter, Front Counter, is free: 30 full routes. All Routes is a one-time purchase that opens the other 60.</p></details>
+      <details><summary>What do the tool packs do?</summary><p>Desk Drawer and Supply Cabinet add Undo, +3 Tilts and Lift to your stock. They are optional; every route can be solved without them.</p></details>
+      <details><summary>I bought All Routes on another device.</summary><p>Open Settings → Restore Purchases with the same Apple Account and it comes back.</p></details>
+      <details><summary>Does it collect any data?</summary><p>No. No account, no ads, no analytics. Progress and purchases are stored on your iPhone only. See the <a href="privacy.html">privacy policy</a>.</p></details>
+      <details><summary>Do I need an internet connection?</summary><p>No. Only buying or restoring talks to the App Store.</p></details>
+      <details><summary>Can I make a route easier?</summary><p>Yes: Undo takes back a tilt, +3 Tilts extends the strip, and Lift picks a parcel off the tray (that route then earns one star).</p></details>
+    </section>
+  </main>
+
+  <footer>
+    <a href="support.html">Support</a><a href="privacy.html">Privacy Policy</a>
+    <p>© 2026 Slipchute. Typeface: Archivo by Omnibus-Type (SIL Open Font License).</p>
+  </footer>
+</div>
+</body>
+</html>
