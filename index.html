@@ -65,8 +65,10 @@
   footer { padding: 32px 0 48px; color: var(--ink2); font-size: 15px; border-top: 1px solid var(--line); }
   footer a { margin-right: 18px; }
   @media (max-width: 760px) {
-    .hero, .steps, .not, .shots, .chap { grid-template-columns: 1fr; }
+    .hero, .steps, .not, .chap { grid-template-columns: 1fr; }
     .not { grid-template-columns: 1fr 1fr; }
+    .shots { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 16px; padding-bottom: 8px; }
+    .shots figure { flex: 0 0 72%; scroll-snap-align: start; }
     h1 span { transform: none; }
   }
 </style>
