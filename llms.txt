@@ -1,0 +1,16 @@
+# Slipchute
+
+> Slipchute (on the App Store as "Slipchute: Tilt & Slide Puzzle") is a calm sorting puzzle game for iPhone (iOS 15 or later). One swipe tilts the whole post-office sorting tray; every parcel slides until something stops it, and each one has to drop into the chute with its own stamp. Coming soon to the App Store.
+
+- Controls: swipe, or tap the arrows, to tilt the tray. Every parcel on the tray slides that way at once.
+- Walls, paperweights and other parcels stop a slide. A parcel that lines up with a chute of its own stamp drops in.
+- Each tilt cancels a postage stamp; deliver every parcel before the strip runs out. No timer and no lives: retry any route straight away.
+- 90 routes in three chapters: Front Counter (30 routes, free), Back Room (paperweights that slide with you but never leave) and Night Shift (tape that halts a parcel mid-slide).
+- Free to download. Optional purchases: All Routes (one-time) opens Back Room and Night Shift; Desk Drawer and Supply Cabinet are tool packs that add Undo, +3 Tilts and Lift. Restore Purchases is in Settings.
+- No ads, no account, no analytics or tracking. Progress is stored only on the device and the game plays offline; only buying or restoring talks to the App Store. The game is in English.
+
+## Pages
+
+- [Home](https://nguyenvanlamm.github.io/slipchute-site/): what the game is, how it plays, chapters, pricing and questions
+- [Support](https://nguyenvanlamm.github.io/slipchute-site/support.html): contact, how to play, purchases and restoring, progress
+- [Privacy Policy](https://nguyenvanlamm.github.io/slipchute-site/privacy.html): what the game stores on the device and what it never collects
